@@ -1,13 +1,14 @@
 import { useState, useEffect, useCallback } from 'react';
 import './App.css';
+import getNextCoords from './helpers/getNextCoords';
 import useKeyBoardEvents from './hooks/useKeyboardEvents';
 
 import Grid from './Components/Grid';
 
 const initialSnakeCoords = [
   [5, 4],
-  // [5, 3],
-  // [5, 2]
+  [5, 3],
+  [5, 2],
 ];
 
 function App() {
@@ -15,28 +16,14 @@ function App() {
   const [snake, setSnake] = useState(initialSnakeCoords);
   const moveSnake = useCallback(
     (direction) => {
-      const nextCoords = snake.map((coords) => {
-        if (direction === 'right') {
-          return [coords[0], coords[1] + 1];
-        }
-        if (direction === 'left') {
-          return [coords[0], coords[1] - 1];
-        }
-        if (direction === 'down') {
-          return [coords[0] + 1, coords[1]];
-        }
-        if (direction === 'up') {
-          return [coords[0] - 1, coords[1]];
-        }
-      })
-      setSnake(nextCoords)
+      const nextCoords = getNextCoords(snake, direction);
+      setSnake(nextCoords);
       return;
     },
-    [snake]
-  )
+    [snake],
+  );
   useEffect(() => {
     let interval = setInterval(() => {
-      // console.log(snake)
       moveSnake(direction);
     }, 1000 * 0.5);
     return () => {
