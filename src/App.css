@@ -4,6 +4,7 @@
   height: calc(100vh - 60px);
   color: white;
   padding: 30px;
+  font-size: 3px;
 }
 
 .App-logo {
@@ -41,13 +42,21 @@
 
 .grid__cell {
   display: inline-block;
-  height: 40px;
-  width: 40px;
+  height: 10px;
+  width: 10px;
   border: 1px solid black;
 }
 
 .grid__cell.active {
   background-color: black;
+}
+
+.grid__cell.apple {
+  background-color: red;
+}
+
+.grid__cell.active.apple {
+  background-color: yellow;
 }
 
 .grid {
@@ -56,5 +65,5 @@
   display: flex;
   flex-wrap: wrap;
   background-color: green;
-  max-width: 420px;
+  max-width: 480px;
 }

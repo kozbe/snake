@@ -7,13 +7,12 @@ const ARROW_KEYS = {
   ArrowRight: 'right',
 };
 
-const KeyboardEvents = () => {
+const useKeyboardEvents = () => {
   const [direction, setDirection] = useState('right');
 
   useEffect(() => {
     window.addEventListener('keydown', (e) => {
       const { key } = e;
-      console.log(direction + ' ' + key);
       if (ARROW_KEYS[key]) {
         setDirection(ARROW_KEYS[key]);
       }
@@ -26,4 +25,4 @@ const KeyboardEvents = () => {
   return direction;
 };
 
-export default KeyboardEvents;
+export default useKeyboardEvents;

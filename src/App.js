@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import './App.css';
 import getNextCoords from './helpers/getNextCoords';
 import useKeyBoardEvents from './hooks/useKeyboardEvents';
+// import useTicker from './hooks/useTicker';
 
 import Grid from './Components/Grid';
 
@@ -11,9 +12,12 @@ const initialSnakeCoords = [
   [5, 2],
 ];
 
+let initialApple = [[10, 10]];
+
 function App() {
-  const direction = useKeyBoardEvents();
   const [snake, setSnake] = useState(initialSnakeCoords);
+  const [apple, setApple] = useState(initialApple);
+  const direction = useKeyBoardEvents();
   const moveSnake = useCallback(
     (direction) => {
       const nextCoords = getNextCoords(snake, direction);
@@ -33,7 +37,7 @@ function App() {
   return (
     <div className="App">
       <h1>Snake 🐍</h1>
-      <Grid snakeCoords={snake} size={10} />
+      <Grid snake={snake} apple={apple} size={40} />
       {direction}
     </div>
   );
