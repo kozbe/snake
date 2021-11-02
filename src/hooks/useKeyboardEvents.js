@@ -1,46 +1,27 @@
 import { useState, useEffect } from 'react';
 
+const ARROW_KEYS = {
+  ArrowUp: 'up',
+  ArrowDown: 'down',
+  ArrowLeft: 'left',
+  ArrowRight: 'right',
+};
+
 const KeyboardEvents = () => {
   const [direction, setDirection] = useState('right');
 
-  // const handleKeypress = useCallback(
-  //   (target) => {
-  //     console.log({ direction, target })
-  //     if (
-  //       (direction === 'right' && target === 'left') ||
-  //       (direction === 'left' && target === 'right') ||
-  //       (direction === 'up' && target === 'down') ||
-  //       (direction === 'down' && target === 'up')
-  //     ) {
-  //       return null;
-  //     } else {
-  //       setDirection(() => target)
-  //     }
-  //   }, [direction]
-  // )
-
   useEffect(() => {
-    window.addEventListener('keyup', (e) => {
-      console.log(e);
-      if (e.key === 'ArrowRight') {
-        setDirection('right');
-      }
-      if (e.key === 'ArrowLeft') {
-        setDirection('left');
-      }
-      if (e.key === 'ArrowDown') {
-        setDirection('down');
-      }
-      if (e.key === 'ArrowUp') {
-        setDirection('up');
-      } else {
-        return false;
+    window.addEventListener('keydown', (e) => {
+      const { key } = e;
+      console.log(direction + ' ' + key);
+      if (ARROW_KEYS[key]) {
+        setDirection(ARROW_KEYS[key]);
       }
     });
     return () => {
-      window.removeEventListener('keyup', () => null);
+      window.removeEventListener('keydown', () => null);
     };
-  }, []);
+  }, [direction]);
 
   return direction;
 };
