@@ -1,11 +1,6 @@
-const Cell = ({ i, j, active, isAppleOn }) => {
-  const style = `grid__cell ${active ? 'active' : null} ${
-    isAppleOn ? 'apple' : null
-  }`;
-  if (isAppleOn) {
-    console.log(style)
-  }
-  return <div className={style}>{`${i}, ${j}`}</div>;
+const Cell = ({ row, column, active, isAppleOn }) => {
+  const style = `grid__cell ${active ? 'active' : null} ${isAppleOn ? 'apple' : null}`;
+  return <div className={style}>{`${row}, ${column}`}</div>;
 };
 
 export default Cell;
