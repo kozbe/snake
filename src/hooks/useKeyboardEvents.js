@@ -1,11 +1,6 @@
 import { useState, useEffect } from 'react';
-
-const ARROW_KEYS = {
-  ArrowUp: 'up',
-  ArrowDown: 'down',
-  ArrowLeft: 'left',
-  ArrowRight: 'right',
-};
+import { ARROW_KEYS } from '../consts';
+import getNextDirection from '../helpers/getNextDirection';
 
 const useKeyboardEvents = () => {
   const [direction, setDirection] = useState('right');
@@ -14,13 +9,13 @@ const useKeyboardEvents = () => {
     window.addEventListener('keydown', (e) => {
       const { key } = e;
       if (ARROW_KEYS[key]) {
-        setDirection(ARROW_KEYS[key]);
+        setDirection((prevDirection) => getNextDirection(prevDirection, ARROW_KEYS[key]));
       }
     });
     return () => {
       window.removeEventListener('keydown', () => null);
     };
-  }, [direction]);
+  }, []);
 
   return direction;
 };

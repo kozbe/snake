@@ -1,7 +1,11 @@
+import { useContext } from 'react';
+import { GameContext } from '../Context/gameContext';
 import Cell from './Cell';
 import getCellLocation from '../helpers/getCellLocation';
 
-const Grid = ({ size, snake, apple }) => {
+const Grid = () => {
+  const { size, snake, apple, direction } = useContext(GameContext);
+
   const createCells = () => {
     const cells = [];
     for (let row = 1; row <= size; row++) {
@@ -22,7 +26,11 @@ const Grid = ({ size, snake, apple }) => {
     return cells;
   };
 
-  return <div className="grid">{createCells()}</div>;
+  return (
+    <div className="grid">
+      {createCells()} {direction}
+    </div>
+  );
 };
 
 export default Grid;

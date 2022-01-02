@@ -4,7 +4,7 @@
   height: calc(100vh - 60px);
   color: white;
   padding: 30px;
-  font-size: 3px;
+  /* font-size: 3px; */
 }
 
 .App-logo {
